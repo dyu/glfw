@@ -3,6 +3,9 @@ config("glfw_config") {
   include_dirs = [
     "include",
   ]
+  defines = [
+    "_GLFW_USE_CONFIG_H",
+  ]
 }
 
 static_library("glfw") {
