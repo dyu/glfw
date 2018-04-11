@@ -2,9 +2,13 @@
 config("glfw_config") {
   include_dirs = [
     "include",
+    "deps",
   ]
   defines = [
     "_GLFW_USE_CONFIG_H",
+  ]
+  libs = [
+    "X11",
   ]
 }
 
@@ -23,6 +27,7 @@ static_library("glfw") {
     "src/egl_context.h",
     "src/osmesa_context.h",
     "src/linux_joystick.h",
+    "deps/glad/glad.h",
     
     "src/x11_init.c",
     "src/x11_monitor.c",
@@ -34,6 +39,7 @@ static_library("glfw") {
     "src/egl_context.c",
     "src/osmesa_context.c",
     "src/linux_joystick.c",
+    "deps/glad.c",
     
     "src/context.c",
     "src/init.c",
@@ -42,6 +48,46 @@ static_library("glfw") {
     "src/vulkan.c",
     "src/window.c",
   ]
-  include_dirs = [ "deps" ]
   public_configs = [ ":glfw_config" ]
 }
+
+executable("boing") {
+  sources = [ "examples/boing.c" ]
+  deps = [ ":glfw" ]
+}
+
+executable("gears") {
+  sources = [ "examples/gears.c" ]
+  deps = [ ":glfw" ]
+}
+
+executable("heightmap") {
+  sources = [ "examples/heightmap.c" ]
+  deps = [ ":glfw" ]
+}
+
+executable("offscreen") {
+  sources = [ "examples/offscreen.c" ]
+  deps = [ ":glfw" ]
+}
+
+executable("sharing") {
+  sources = [ "examples/sharing.c", "deps/tinycthread.c", "deps/tinycthread.h" ]
+  deps = [ ":glfw" ]
+}
+
+executable("simple") {
+  sources = [ "examples/simple.c" ]
+  deps = [ ":glfw" ]
+}
+
+executable("splitview") {
+  sources = [ "examples/splitview.c" ]
+  deps = [ ":glfw" ]
+}
+
+executable("wave") {
+  sources = [ "examples/wave.c" ]
+  deps = [ ":glfw" ]
+}
+
