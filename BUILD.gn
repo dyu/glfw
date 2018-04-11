@@ -39,5 +39,6 @@ static_library("glfw") {
     "src/vulkan.c",
     "src/window.c",
   ]
+  include_dirs = [ "deps" ]
   public_configs = [ ":glfw_config" ]
 }
